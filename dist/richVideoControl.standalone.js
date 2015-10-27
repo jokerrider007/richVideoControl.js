@@ -18,7 +18,11 @@ if (typeof getFile != 'function') {
     }
 }
 
-var lastScriptPath = document.getElementsByTagName('script')[document.getElementsByTagName('script').length - 1].getAttribute('src').split('?')[0].split('/').slice(0, -1).join('/') + '/';
+var lastScriptPath
+try {
+    lastScriptPath = document.getElementsByTagName('script')[document.getElementsByTagName('script').length - 1].getAttribute('src').split('?')[0].split('/').slice(0, -1).join('/') + '/';
+} catch (e) {};
+lastScriptPath = lastScriptPath || './';
 
 store.push({
     "url": lastScriptPath + "richVideoControlIcon_backward.png",
@@ -297,7 +301,7 @@ function richVideoControl$applyControl(t) {
 
     function changePlaybackRate(e) {
         //if ((10 > parseFloat(e.target.value)) && (parseFloat(e.target.value) > -10)) {
-            t.playbackRate = parseFloat(e.target.value);
+        t.playbackRate = parseFloat(e.target.value);
         //}
         if (t.playbackRate == 0) {
             t.pause();
