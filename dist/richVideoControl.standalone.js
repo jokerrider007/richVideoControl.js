@@ -1,5 +1,5 @@
 /*
-richVideoControl.js v0.1 (c) 2015 by Wilson Luniz @ Previous Production Macau. Licensed under the GPLv3 license
+richVideoControl.js v0.2 (c) 2015 by Wilson Luniz @ Previous Production Macau. Licensed under the GPLv3 license
 See http://github.com/wilsonlmh/richVideoControl.js/ for license and more info 
 */
 var store = store || [];
@@ -54,8 +54,18 @@ store.push({
     "dataUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEkAAABJCAYAAABxcwvcAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA75JREFUeNrsnN1xozAQgBWPX/IUOjAdhKvALoEOjnTgdMBVcO7gSAe4A1JBcAWHKzj5KY8+aWY95+H42V1JgAg7s+OMh8DysbtarYQfrterWKRbVguCBZIVWY903Qg0VLqD7/Tfm9pxJ6UStLzTakhjHwbKSYHSGIDozyfD852V5koL+PQakoaSWALTJhelmdKDMw/TkBzoTmlxHV4ypaHt+7HtSRE80e3IufZN6R5y2aRGt1TpxwQAafkOoRdPJSdFkBOeJzqCHyEvyrEgxQDoSUxbzmBrOTQk/XR+eVQTXmC0LYeClEHc2zL+ViBWDaEcWM5zL2C/0xIgtTBU50oT4nAdKd0rLS1cP6bcMxVQYmBYBTcZWKhdNNyDUsm0RQJ065B2BgYljorWwMCzJfaBUYyRzLAKHAGqexYnDAubkIoJeU+XHhigUhuQ9i7j3YFy8mZkAokaZmMD4oIqTCAdPATEBRVzugC6U/ibUHJ945b9DkV3An4Spi4htQuQEox5nSAgAW2bI/LYTVvXoM2TApgiYCau73d96imK8b2sOmb32Jl9MvGJrYSww8i2KeRWHbGM7QBWYvqSQc7B5rFeSCGhgZYKfwRrKyrcdjPzIqo3PddDzgRSLvyTnONNXEgXTyFltiBtECcphJ9SwgPuk85ww4aar5Cwtm+7IAWEJyI89iZsEdoIKVog/c+Cu4IrPYZEtn3ZxLVAWiAtkOYAKfD4ngNTSOTh0UMhlzkr5vD4FSDJNkjY6cbOY0gY29/7ctJ5xpC0F2Ha0lUfJIw36QvFHkJKOJNgLiSxQMKJ3ukWegYIE2onTLhVcCBGUo8gYW3NscXkgeBNPpQDeplogzw2q38xpxXcUDSv3jhbwZUC3zTfCvxipktAZYtXZwK/Gt0cQT1b7KxthHKs+5btP5QNaNXc9ycVDXYMsj+JGs9a2LvuDWf1f2rffSp9JJyjM6/2tUokMd88QZ01ZP3UVNQ+Es+RmPaTsvqEDzHvkSNDosgP0bOnAftuCTbsTuC2Q0KSgv+WFKp8WREMiScIyOTd3gvWCyntW51rXiYEyCTULiR7DWqSm5QDvRrRpBXzvZId5TqchQBdlb6N7EG3BtqG8X+fVHu5qyV6yHwdERClN9RUHhSUiflQvzDhQiqmJ5ELX18XJ0NDQDfIKG9aewqJO6odoamWU9KEr5ASQkjdoBTc/OljTmqa0N7LuQbGWNYzCbUTzDELFx0InyEdxb/fT6pcXtBHSLkw/O2Rr5CTBpdlE9cCyY78FWAAUP9VJkZ1g/gAAAAASUVORK5CYII="
 });
 
+store.push({
+    "url": lastScriptPath + "richVideoControlIcon_dock.png",
+    "dataUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEkAAABJCAYAAABxcwvcAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAALpJREFUeNrs2sENQDAYgFHEXoxmFKPUBkawSXGTSKjEgfZ9SS89vvRvQlrHGCtdV0OCBAkSJEiQIAkSJEjfRBoKNlm2NaYglXy8pm31x43GMN3XPtANmRrsp6Z7AylkfE8Nd0jGLSFIkCBBggQJEiRBggQJEiRIkAQJEiRIkCBBgiRIkCBBgpRXHnGd84jLuEGCBAkSJEGCBAkSpB/WXnzkldqc+hdAkCBBggQJEiRIkCBBggTpV60CDAAx2V+5jXBhVQAAAABJRU5ErkJggg=="
+});
+
+store.push({
+    "url": lastScriptPath + "richVideoControlIcon_hide.png",
+    "dataUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEkAAABJCAYAAABxcwvcAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAALxJREFUeNrs3LERgyAYgFHx7LNCNtGRHCGbednAbOIGSGnwoEkqeN/d31C+A48GQ4xxUL0RASRIkCBBggRJkCBBggQJEiRBggQJEiRIkCAJEiRIkCBBgiRIkCBBggQJkiBBggQJEiRIkAQJEiRIkCBB0ldTYX3p2ORIs18XQuE1d89PvN/5JnHcfjhueZ80a6MG27+QnmledlK9R5oZ0v3j1Wt7vhD8q8RlEhIkSJAgQRIkSJAgQWqhU4ABALZZEhD+Oj9TAAAAAElFTkSuQmCC"
+});
+
 var importCSS = document.createElement('style');
-importCSS.innerHTML = '.richVideoControl-button:hover{background:rgba(0,0,0,.2)}.richVideoControl-button:active,.richVideoControl-buttons{background:rgba(0,0,0,.5)}.richVideoControl-button{width:26px;height:26px;padding:0;margin:7px 10px;border:0;float:left}.richVideoControl{position:absolute;overflow:hidden;padding:0;border:0;margin:0}.richVideoControl-buttons{height:40px;min-width:190px;display:inline-block;padding:0 5px;margin:0;float:left}.richVideoControl-seeker{background:linear-gradient(to right,rgba(252,88,0,.7) 0,rgba(0,0,0,.2) 0);height:10px;width:100%;padding:0;border:0;margin:0;overflow:hidden}.richVideoControl-timeCode{width:230px;height:40px;padding:0;border:0;margin:0;display:inline-block;background:rgba(0,0,0,.8);overflow:hidden;font-size:18px;color:rgba(252,88,0,.9);text-align:center;font-style:bold;line-height:40px}.richVideoControl-timeCode_rolling{color:#fff}.richVideoControl-playbackRate{border:1px solid rgba(252,88,0,.9);background:rgba(0,0,0,.5);text-align:center;height:24px;font-size:16px;padding:0;margin-top:7px;margin-bottom:7px;color:#fff;min-width:50px;width:50px;float:left;display:inline-block}';
+importCSS.innerHTML = '.richVideoControl-button:hover{background:rgba(0,0,0,.2)}.richVideoControl-button:active,.richVideoControl-buttons{background:rgba(0,0,0,.5)}.richVideoControl-button{width:26px;height:26px;padding:0;margin:7px 10px;border:0;float:left}.richVideoControl{position:absolute;overflow:hidden;padding:0;border:0;margin:0}.richVideoControl-buttons{height:40px;min-width:210px;display:inline-block;padding:0 5px;margin:0;float:left}.richVideoControl-seeker{background:linear-gradient(to right,rgba(252,88,0,.7) 0,rgba(0,0,0,.2) 0);height:10px;width:100%;padding:0;border:0;margin:0;overflow:hidden}.richVideoControl-timeCode{width:210px;height:40px;padding:0;border:0;margin:0;display:inline-block;background:rgba(0,0,0,.8);overflow:hidden;font-size:18px;color:rgba(252,88,0,.9);text-align:center;font-style:bold;line-height:40px}.richVideoControl-timeCode_rolling{color:#fff}.richVideoControl-playbackRate{border:1px solid rgba(252,88,0,.9);background:rgba(0,0,0,.5);text-align:center;height:24px;font-size:16px;padding:0;margin-top:7px;margin-bottom:7px;color:#fff;min-width:50px;width:50px;float:left;display:inline-block}.richVideoControl-volume{-webkit-appearance:none;width:80px;margin-top:10px;background:transparent;float:left;}.richVideoControl-volume::-webkit-slider-thumb{-webkit-appearance:none;border:1px solid #000;height:20px;width:10px;border-radius:2px;cursor:pointer;background:#fff;box-shadow:1px 1px 1px #000,0 0 1px #0d0d0d;margin-top:-10px}.richVideoControl-volume::-moz-range-thumb{box-shadow:1px 1px 1px #000,0 0 1px #0d0d0d;border:1px solid #000;height:20px;width:10px;border-radius:2px;background:#fff;cursor:pointer}.richVideoControl-volume::-webkit-slider-runnable-track{width:100%;height:5px;cursor:pointer;box-shadow:1px 1px 1px #000,0 0 1px #0d0d0d;background:rgba(252,88,0,.9);border-radius:1px;border:.2px solid #010101;margin-top:10px}.richVideoControl-volume:focus::-webkit-slider-runnable-track{background:rgba(252,88,0,.9)}.richVideoControl-volume::-moz-range-track{width:100%;height:5px;cursor:pointer;box-shadow:1px 1px 1px #000,0 0 1px #0d0d0d;background:rgba(252,88,0,.9);border-radius:1px;border:.2px solid #010101}';
 //importCSS.setAttribute('rel','stylesheet');
 //importCSS.setAttribute('type','text/css');
 //importCSS.setAttribute('href','');
@@ -71,7 +81,11 @@ function richVideoControl$applyControl(t) {
         hideTimeout: 0,
         hideInterval: -999,
         playbackRate: 1.0,
-        basePath: lastScriptPath
+        slidingVolume: false,
+        basePath: lastScriptPath,
+        playing: false, //oppsite to t.paused
+        playUpdater: 0,
+        autoHide: true
     };
 
     //make control elements
@@ -93,7 +107,9 @@ function richVideoControl$applyControl(t) {
         backward: document.createElement('img'),
         begin: document.createElement('img'),
         playbackRate: document.createElement('input'),
-        reset: document.createElement('img')
+        reset: document.createElement('img'),
+        volume: document.createElement('input'),
+        dock: document.createElement('img'),
     };
 
     button.playStop.src = getFile(current.basePath + 'richVideoControlIcon_play.png');
@@ -101,16 +117,21 @@ function richVideoControl$applyControl(t) {
     button.backward.src = getFile(current.basePath + 'richVideoControlIcon_backward.png');
     button.begin.src = getFile(current.basePath + 'richVideoControlIcon_begin.png');
     button.reset.src = getFile(current.basePath + 'richVideoControlIcon_reset.png');
+    button.dock.src = getFile(current.basePath + 'richVideoControlIcon_hide.png');
     button.playbackRate.setAttribute('type', 'text');
-
+    button.volume.setAttribute('type', 'range');
+    button.volume.setAttribute('max', '1');
+    button.volume.setAttribute('min', '0');
+    button.volume.setAttribute('step', '0.01');
 
     button.playStop.classList.add("richVideoControl-button");
     button.forward.classList.add("richVideoControl-button");
     button.backward.classList.add("richVideoControl-button");
     button.begin.classList.add("richVideoControl-button");
     button.reset.classList.add("richVideoControl-button");
+    button.dock.classList.add("richVideoControl-button");
     button.playbackRate.classList.add("richVideoControl-playbackRate");
-
+    button.volume.classList.add("richVideoControl-volume");
 
     var timeCode = document.createElement('div');
     timeCode.classList.add('richVideoControl-timeCode');
@@ -124,6 +145,8 @@ function richVideoControl$applyControl(t) {
     buttons.appendChild(button.forward);
     buttons.appendChild(button.playbackRate);
     buttons.appendChild(button.reset);
+    buttons.appendChild(button.volume);
+    buttons.appendChild(button.dock);
 
     function div(num1, num2) {
         var n1 = Math.round(num1);
@@ -247,7 +270,7 @@ function richVideoControl$applyControl(t) {
             if (t.playbackRate < -10) {
                 t.playbackRate = -10;
             }
-            button.playbackRate.value = t.playbackRate.toFixed(1).toString();
+            button.playbackRate.value = t.playbackRate.toFixed(1).toString() + "x";
             current.playbackRate = t.playbackRate.toFixed(1);
         }
         if (!t.paused) {
@@ -255,12 +278,24 @@ function richVideoControl$applyControl(t) {
         } else {
             button.playStop.src = getFile(current.basePath + 'richVideoControlIcon_play.png');
         }
+        if (t.paused == current.playing) {
+            current.playing = !current.playing;
+            if (current.playing) {
+                current.playUpdater = setInterval(controlRolling, 25);
+            } else {
+                clearInterval(current.playUpdater);
+            }
+        }
+
     }
 
     function controlRolling(e) {
         var percent = t.currentTime / t.duration;
         seeker.style.background = "linear-gradient(to right, rgba(252,88,0,0.7) " + Math.round(percent * seeker.clientWidth) + "px,rgba(0,0,0,0.2)" + Math.round(percent * seeker.clientWidth) + "px)";
         timeCode.innerHTML = '<span class="richVideoControl-timeCode_rolling">' + second2TimeCode(Math.round(t.currentTime * 100) / 100) + '</span>' + "/" + second2TimeCode(Math.round(t.duration * 100) / 100);
+        if ((button.volume.value != t.volume) && (!current.slidingVolume)) {
+            button.volume.value = parseFloat(t.volume.toFixed(2));
+        }
         controlStatusUpdate();
     }
 
@@ -273,7 +308,7 @@ function richVideoControl$applyControl(t) {
     }
 
     function hideControl(e) {
-        if (current.hideInterval == -999) {
+        if ((current.hideInterval == -999) && (current.autoHide)) {
             if (current.showInterval > -999) {
                 clearInterval(current.showInterval);
                 current.showInterval = -999;
@@ -306,6 +341,20 @@ function richVideoControl$applyControl(t) {
         if (t.playbackRate == 0) {
             t.pause();
             t.playbackRate = 1;
+        }
+    }
+
+    function changeVolume(e) {
+        current.slidingVolume = true;
+        t.volume = e.target.value;
+    }
+    
+    function toggleAutoHide(e) {
+        current.autoHide = !current.autoHide;
+        if (current.autoHide) {
+            button.dock.src = getFile(current.basePath + 'richVideoControlIcon_hide.png');
+        } else {
+            button.dock.src = getFile(current.basePath + 'richVideoControlIcon_dock.png');
         }
     }
 
@@ -353,15 +402,18 @@ function richVideoControl$applyControl(t) {
     button.reset.addEventListener('click', function () {
         t.playbackRate = 1;
     })
+    button.volume.addEventListener('input', changeVolume);
+    button.dock.addEventListener('click', toggleAutoHide);
 
     //video player events
     t.addEventListener('canplay', enableControl);
     t.addEventListener('playing', controlRolling);
     t.addEventListener('timeupdate', controlRolling);
     t.addEventListener('seeking', controlRolling);
+    t.addEventListener('volumechange', controlRolling);
     t.addEventListener('ratechange', controlStatusUpdate);
-    t.addEventListener('pause', controlRolling);
-    t.addEventListener('play', controlRolling);
+    t.addEventListener('pause', controlStatusUpdate);
+    t.addEventListener('play', controlStatusUpdate);
     t.addEventListener('emptied', disableControl);
     t.addEventListener('mouseover', showControl);
     t.addEventListener('mousemove', showControl);

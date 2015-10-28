@@ -29,7 +29,7 @@
 
 .richVideoControl-buttons {
     height: 40px;
-    min-width: 190px;
+    min-width: 210px;
     display: inline-block;
     background: rgba(0, 0, 0, 0.5);
     padding: 0;
@@ -50,7 +50,7 @@
 }
 
 .richVideoControl-timeCode {
-    width: 230px;
+    width: 210px;
     height: 40px;
     padding: 0;
     border: 0;
@@ -83,4 +83,59 @@
     width: 50px;
     float: left;
     display: inline-block;
+}
+
+.richVideoControl-volume {
+    -webkit-appearance: none;
+    width: 80px;
+    margin-top: 10px;
+    background: transparent;
+    float:left;
+}
+
+.richVideoControl-volume::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: 1px solid #000000;
+    height: 20px;
+    width: 10px;
+    border-radius: 2px;
+    cursor: pointer;
+    background: #ffffff;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    margin-top:-10px;
+}
+
+.richVideoControl-volume::-moz-range-thumb {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    border: 1px solid #000000;
+    height: 20px;
+    width: 10px;
+    border-radius: 2px;
+    background: #ffffff;
+    cursor: pointer;
+}
+
+.richVideoControl-volume::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    background: rgba(252, 88, 0, 0.9);
+    border-radius: 1px;
+    border: 0.2px solid #010101;
+    margin-top: 10px;
+}
+
+.richVideoControl-volume:focus::-webkit-slider-runnable-track {
+    background: rgba(252, 88, 0, 0.9);
+}
+
+.richVideoControl-volume::-moz-range-track {
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    background: rgba(252, 88, 0, 0.9);
+    border-radius: 1px;
+    border: 0.2px solid #010101;
 }

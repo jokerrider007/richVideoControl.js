@@ -1,5 +1,5 @@
 /*
-richVideoControl.js v0.1 (c) 2015 by Wilson Luniz @ Previous Production Macau. Licensed under the GPLv3 license
+richVideoControl.js v0.2 (c) 2015 by Wilson Luniz @ Previous Production Macau. Licensed under the GPLv3 license
 See http://github.com/wilsonlmh/richVideoControl.js/ for license and more info 
 */
 var store = store || [];
@@ -18,7 +18,7 @@ if (typeof getFile != 'function') {
     }
 }
 
-var lastScriptPath = document.getElementsByTagName('script')[document.getElementsByTagName('script').length - 1].getAttribute('src').split('?')[0].split('/').slice(0, -1).join('/') + '/';
+var lastScriptPath = (document.getElementsByTagName('script')[document.getElementsByTagName('script').length - 1].getAttribute('src').split('?')[0].split('/').slice(0, -1).join('/') + '/') || './';
 
 function richVideoControl$applyControl(t) {
 
@@ -27,7 +27,11 @@ function richVideoControl$applyControl(t) {
         hideTimeout: 0,
         hideInterval: -999,
         playbackRate: 1.0,
+        slidingVolume: false,
         basePath: lastScriptPath,
+        playing: false, //oppsite to t.paused
+        playUpdater: 0,
+        autoHide: true
     };
 
     //make control elements
@@ -49,7 +53,9 @@ function richVideoControl$applyControl(t) {
         backward: document.createElement('img'),
         begin: document.createElement('img'),
         playbackRate: document.createElement('input'),
-        reset: document.createElement('img')
+        reset: document.createElement('img'),
+        volume: document.createElement('input'),
+        dock: document.createElement('img'),
     };
 
     button.playStop.src = getFile(current.basePath + 'richVideoControlIcon_play.png');
@@ -57,16 +63,21 @@ function richVideoControl$applyControl(t) {
     button.backward.src = getFile(current.basePath + 'richVideoControlIcon_backward.png');
     button.begin.src = getFile(current.basePath + 'richVideoControlIcon_begin.png');
     button.reset.src = getFile(current.basePath + 'richVideoControlIcon_reset.png');
+    button.dock.src = getFile(current.basePath + 'richVideoControlIcon_hide.png');
     button.playbackRate.setAttribute('type', 'text');
-
+    button.volume.setAttribute('type', 'range');
+    button.volume.setAttribute('max', '1');
+    button.volume.setAttribute('min', '0');
+    button.volume.setAttribute('step', '0.01');
 
     button.playStop.classList.add("richVideoControl-button");
     button.forward.classList.add("richVideoControl-button");
     button.backward.classList.add("richVideoControl-button");
     button.begin.classList.add("richVideoControl-button");
     button.reset.classList.add("richVideoControl-button");
+    button.dock.classList.add("richVideoControl-button");
     button.playbackRate.classList.add("richVideoControl-playbackRate");
-
+    button.volume.classList.add("richVideoControl-volume");
 
     var timeCode = document.createElement('div');
     timeCode.classList.add('richVideoControl-timeCode');
@@ -80,6 +91,8 @@ function richVideoControl$applyControl(t) {
     buttons.appendChild(button.forward);
     buttons.appendChild(button.playbackRate);
     buttons.appendChild(button.reset);
+    buttons.appendChild(button.volume);
+    buttons.appendChild(button.dock);
 
     function div(num1, num2) {
         var n1 = Math.round(num1);
@@ -203,20 +216,32 @@ function richVideoControl$applyControl(t) {
             if (t.playbackRate < -10) {
                 t.playbackRate = -10;
             }
-            button.playbackRate.value = t.playbackRate.toFixed(1).toString();
+            button.playbackRate.value = t.playbackRate.toFixed(1).toString() + "x";
             current.playbackRate = t.playbackRate.toFixed(1);
         }
         if (!t.paused) {
-            button.playStop.src = current.basePath + 'richVideoControlIcon_pause.png';
+            button.playStop.src = getFile(current.basePath + 'richVideoControlIcon_pause.png');
         } else {
-            button.playStop.src = current.basePath + 'richVideoControlIcon_play.png';
+            button.playStop.src = getFile(current.basePath + 'richVideoControlIcon_play.png');
         }
+        if (t.paused == current.playing) {
+            current.playing = !current.playing;
+            if (current.playing) {
+                current.playUpdater = setInterval(controlRolling, 25);
+            } else {
+                clearInterval(current.playUpdater);
+            }
+        }
+
     }
 
     function controlRolling(e) {
         var percent = t.currentTime / t.duration;
         seeker.style.background = "linear-gradient(to right, rgba(252,88,0,0.7) " + Math.round(percent * seeker.clientWidth) + "px,rgba(0,0,0,0.2)" + Math.round(percent * seeker.clientWidth) + "px)";
         timeCode.innerHTML = '<span class="richVideoControl-timeCode_rolling">' + second2TimeCode(Math.round(t.currentTime * 100) / 100) + '</span>' + "/" + second2TimeCode(Math.round(t.duration * 100) / 100);
+        if ((button.volume.value != t.volume) && (!current.slidingVolume)) {
+            button.volume.value = parseFloat(t.volume.toFixed(2));
+        }
         controlStatusUpdate();
     }
 
@@ -229,7 +254,7 @@ function richVideoControl$applyControl(t) {
     }
 
     function hideControl(e) {
-        if (current.hideInterval == -999) {
+        if ((current.hideInterval == -999) && (current.autoHide)) {
             if (current.showInterval > -999) {
                 clearInterval(current.showInterval);
                 current.showInterval = -999;
@@ -257,11 +282,25 @@ function richVideoControl$applyControl(t) {
 
     function changePlaybackRate(e) {
         //if ((10 > parseFloat(e.target.value)) && (parseFloat(e.target.value) > -10)) {
-            t.playbackRate = parseFloat(e.target.value);
+        t.playbackRate = parseFloat(e.target.value);
         //}
         if (t.playbackRate == 0) {
             t.pause();
             t.playbackRate = 1;
+        }
+    }
+
+    function changeVolume(e) {
+        current.slidingVolume = true;
+        t.volume = e.target.value;
+    }
+    
+    function toggleAutoHide(e) {
+        current.autoHide = !current.autoHide;
+        if (current.autoHide) {
+            button.dock.src = getFile(current.basePath + 'richVideoControlIcon_hide.png');
+        } else {
+            button.dock.src = getFile(current.basePath + 'richVideoControlIcon_dock.png');
         }
     }
 
@@ -309,15 +348,18 @@ function richVideoControl$applyControl(t) {
     button.reset.addEventListener('click', function () {
         t.playbackRate = 1;
     })
+    button.volume.addEventListener('input', changeVolume);
+    button.dock.addEventListener('click', toggleAutoHide);
 
     //video player events
     t.addEventListener('canplay', enableControl);
     t.addEventListener('playing', controlRolling);
     t.addEventListener('timeupdate', controlRolling);
     t.addEventListener('seeking', controlRolling);
+    t.addEventListener('volumechange', controlRolling);
     t.addEventListener('ratechange', controlStatusUpdate);
-    t.addEventListener('pause', controlRolling);
-    t.addEventListener('play', controlRolling);
+    t.addEventListener('pause', controlStatusUpdate);
+    t.addEventListener('play', controlStatusUpdate);
     t.addEventListener('emptied', disableControl);
     t.addEventListener('mouseover', showControl);
     t.addEventListener('mousemove', showControl);
